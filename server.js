@@ -91,11 +91,17 @@ let houses = [
     }
 ]
 
-app.get("/api/houses/:id", (req, res)=>{
-    const house = houses.findIndex((house)=>house.id === parseInt(req.params.id));
+app.get("/api/houses/", (req, res)=>{
+    console.log("in get request")
     res.send(houses);
 });
 
-app.listen(3001, () => { 
+app.get("/api/houses/:id", (req, res)=>{
+    const house = houses.find((house)=>house._id === parseInt(req.params.id));
+    res.send(house);
+});
+
+
+app.listen(3001, () => {
     console.log("Server is up and running");
 });
